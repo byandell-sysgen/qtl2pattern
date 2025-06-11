@@ -31,6 +31,8 @@ read_probs_calc <- function(chr, datapath, allele = TRUE, probdir = "genoprob") 
   }
   probs
 }
+#' @export
+#' @method dimnames calc_genoprob
 dimnames.calc_genoprob <- function (x)
 {
   dnames <- lapply(x, dimnames)
