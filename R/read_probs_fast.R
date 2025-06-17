@@ -6,9 +6,16 @@ read_probs_fast <- function(chr, datapath, allele = TRUE,
   if(!dir.exists(genoprob_dir))
     return(NULL)
   
-  allele_rds <- paste0(ifelse(allele, "aprobs", "probs"), "_fstindex.rds")
-  if(!file.exists(probfile <- file.path(genoprob_dir, allele_rds)))
+  ## Redesign as allele probs may be "apr", "aprobs", "alleleprobs"
+  ## and allele pair probs may be "pr", "probs", "genoprobs", "pairprobs"
+  allele_rds <- paste0(c("apr", "aprobs", "alleleprobs"), "_fstindex.rds")
+  if(!allele)
+    allele_rds <- paste0(c("pr", "probs", "genoprobs", "pairprobs"), "_fstindex.rds")
+  if(any(tester <- file.exists(probfile <- file.path(genoprob_dir, allele_rds)))) {
+    probfile <- probfile[tester][1]
+  } else {
     return(NULL)
+  }
 
   ## Read in fst_genotype object (small).
   probs <- readRDS(probfile)
