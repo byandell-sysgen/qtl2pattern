@@ -134,6 +134,9 @@ summary.top_snps_pattern <- function(object, sum_type=c("range","best","peak"), 
                                  ...) {
   haplos <- attr(object, "haplos")
   sum_type <- match.arg(sum_type)
+  # Make sure SDP is smaller of two forms.
+  object <- dplyr::mutate(object, sdp = pmin(.data$sdp, 255 - .data$sdp))
+  # Summary depends on `sum_type` argument.
   switch(sum_type,
          best = { ## Top SNPs across all phenotypes.
            out <- 

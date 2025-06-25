@@ -48,7 +48,7 @@ ggplot_scan1pattern_internal <- function(object, map, plot_type,
   patterns <- object$patterns$founders[m]
   pheno <- object$patterns$pheno[m]
   tmp <- object$scan
-  colnames(tmp) <- pheno
+  #colnames(tmp) <- pheno ## this is not correct with more than one pattern.
   object$scan <- modify_object(object$scan, tmp[, m, drop = FALSE])
   
   pattern <- matrix(patterns, nrow(object$scan), ncol(object$scan), byrow = TRUE)

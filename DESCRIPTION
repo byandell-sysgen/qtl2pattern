@@ -1,8 +1,8 @@
 Package: qtl2pattern
 Type: Package
 Title: Pattern Support for 'qtl2' Package
-Version: 1.2.4
-Date: 2025-06-17
+Version: 1.2.5
+Date: 2025-06-24
 Authors@R: c(person("Brian S Yandell",
                 role = c("aut", "cre"),
                 email = "brian.yandell@wisc.edu"))
