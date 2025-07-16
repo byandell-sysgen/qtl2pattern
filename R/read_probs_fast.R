@@ -12,7 +12,7 @@ read_probs_fast <- function(chr, datapath, allele = TRUE,
   ##   allele pair probs may be "pr", "probs", "genoprobs", "pairprobs"
   ##   SNP probs may be "snp_pr", "snpr", "snpprobs"  
   if(is.logical(allele)) {
-    ifelse(allele, "allele", "pair")
+    allele <- ifelse(allele, "allele", "pair")
   }
   allele <- match.arg(allele, c("allele", "pair", "snp"))
   allele_rds <- switch(allele,
