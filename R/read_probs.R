@@ -5,7 +5,7 @@
 #' @param chr vector of chromosome identifiers
 #' @param start_val,end_val start and end values in Mbp
 #' @param datapath name of folder with Derived Data
-#' @param allele read haplotype allele probabilities (if \code{TRUE}) or diplotype allele-pair probabilities (if \code{FALSE})
+#' @param allele read haplotype allele probabilities (if \code{TRUE} or \code{"allele"}), diplotype allele-pair probabilities (if \code{FALSE} or \code{"pair"}), or SNP probabilities (if \code{"snp"})
 #' @param method method of genoprob storage
 #' @param probdir genotype probability directory (default \code{"genoprob"})
 #'

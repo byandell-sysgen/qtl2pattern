@@ -21,7 +21,7 @@ read_probs(
 
 \item{datapath}{name of folder with Derived Data}
 
-\item{allele}{read haplotype allele probabilities (if \code{TRUE}) or diplotype allele-pair probabilities (if \code{FALSE})}
+\item{allele}{read haplotype allele probabilities (if \code{TRUE} or \code{"allele"}), diplotype allele-pair probabilities (if \code{FALSE} or \code{"pair"}), or SNP probabilities (if \code{"snp"})}
 
 \item{method}{method of genoprob storage}
 

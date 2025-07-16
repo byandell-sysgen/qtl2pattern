@@ -1,16 +1,31 @@
 # Read genotype probability object from file
 read_probs_calc <- function(chr, datapath, allele = TRUE, probdir = "genoprob") {
 
-  if(!allele & length(chr) > 1)
+  ## Redesign
+  ##   allele option may be logical or one of c("allele","pair","snp")
+  ##   allele probs may be "apr", "aprobs", "alleleprobs"
+  ##   allele pair probs may be "pr", "probs", "genoprobs", "pairprobs"
+  ##   SNP probs may be "snp_pr", "snpr", "snpprobs"  
+  if(is.logical(allele)) {
+    ifelse(allele, "allele", "pair")
+  }
+  allele <- match.arg(allele, c("allele", "pair", "snp"))
+  
+  if(allele == "snp")
+    stop("not designed for SNP probabilities yet")
+  if((allele == "pair") & length(chr) > 1)
     stop("must supply at most one chr")
 
   ## Read in probs for selected chromosomes and cbind.
-  prefix <- ifelse(allele, "aprobs_", "probs_")
+  prefix <- switch(allele,
+    allele = "aprobs_",
+    pair = "probs_")
+  ## Note broader choices in `read_probs_fast()`.
   probs <- convert_probs(
     readRDS(file.path(datapath, probdir,
                       paste0(prefix, chr[1], ".rds"))))
 
-  if(!allele) {
+  if(allele == "pair") {
 
     ## Fix rownames of probs. Begin with "DO-".
     pr <- probs
